@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oh My Art! · Learn art through famous paintings and their infamous secrets</title>
+<meta name="description" content="Art history for total beginners: 540 paintings, from cave art to Pop Art, each with the details nobody told you about. Join the waitlist for the app.">
+<link rel="canonical" href="https://ohmyart.app/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ohmyart.app/">
+<meta property="og:title" content="Oh My Art!">
+<meta property="og:description" content="Learn art through famous paintings and their infamous secrets.">
+<meta property="og:image" content="https://ohmyart.app/img/courbet.jpg">
+<meta name="theme-color" content="#141a2e">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  :root{--ink:#141a2e;--deep:#0d1120;--sun:#f4c542;--sunDark:#b8901f;--text:#10142a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{background:var(--ink)}
+  body{font-family:'Bricolage Grotesque',system-ui,sans-serif;color:#fff;-webkit-font-smoothing:antialiased;min-height:100vh;
+    background:radial-gradient(520px 420px at 100% 0%,rgba(244,197,66,.32),transparent 70%),radial-gradient(520px 520px at 0% 38%,rgba(110,168,255,.26),transparent 70%),radial-gradient(460px 380px at 100% 88%,rgba(255,123,107,.2),transparent 70%),var(--ink)}
+  a{color:inherit}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  .hl{background:var(--sun);color:var(--text);padding:0 6px;border-radius:7px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+
+  nav{height:64px;display:flex;align-items:center}
+  .brand{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:800;text-decoration:none}
+  .brand img{width:34px;height:34px;border-radius:9px}
+
+  .hero{display:grid;gap:28px;padding:20px 0 70px}
+  .art{position:relative;justify-self:center;width:250px;margin-bottom:10px}
+  .art img{display:block;width:100%;aspect-ratio:1;border-radius:30px;transform:rotate(-3deg);box-shadow:0 6px 0 rgba(0,0,0,.35),0 24px 50px rgba(0,0,0,.4)}
+  .bubble{position:absolute;left:50%;bottom:-22px;transform:translateX(-50%) rotate(-6deg);white-space:nowrap;background:var(--sun);color:var(--text);font-weight:800;font-size:22px;padding:8px 16px;border-radius:14px;box-shadow:0 4px 0 var(--sunDark)}
+  h1{font-size:33px;line-height:1.08;font-weight:800;letter-spacing:-.6px}
+  .sub{margin-top:16px;font-size:16px;line-height:1.45;color:rgba(255,255,255,.75)}
+
+  .signup{margin-top:24px}
+  form{display:flex;flex-direction:column;gap:10px}
+  input[type=email]{height:54px;border-radius:16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);padding:0 18px;font-family:inherit;font-size:16px;font-weight:500;color:#fff;outline:none}
+  input[type=email]::placeholder{color:rgba(255,255,255,.5)}
+  input[type=email]:focus{border-color:var(--sun);background:rgba(255,255,255,.11)}
+  button{height:56px;border:0;border-radius:16px;background:var(--sun);color:var(--text);font-family:inherit;font-size:17px;font-weight:800;cursor:pointer;box-shadow:0 4px 0 var(--sunDark);transition:transform .1s,box-shadow .1s}
+  button:active{transform:translateY(3px);box-shadow:0 1px 0 var(--sunDark)}
+  button:disabled{opacity:.7;cursor:default}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+  .note{margin-top:12px;font-size:13px;color:rgba(255,255,255,.55);text-align:center}
+  .note a{color:rgba(255,255,255,.75)}
+  .done{display:none;padding:18px;border-radius:16px;background:rgba(95,211,160,.14);border:1px solid rgba(95,211,160,.4);font-size:17px;font-weight:700;text-align:center}
+  .signup.joined form,.signup.joined .note{display:none}
+  .signup.joined .done{display:block}
+  .err{margin-top:10px;font-size:14px;color:#ff9b8f;text-align:center}
+
+  .closer{padding:10px 0 80px}
+  .kicker{font-size:13px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--sun)}
+  h2{font-size:24px;line-height:1.15;font-weight:800;margin:6px 0 16px}
+  .closer-grid{display:grid;gap:14px}
+  .painting{position:relative;border-radius:18px;overflow:hidden;line-height:0}
+  .painting img{width:100%;height:auto}
+  .dot{position:absolute;width:32px;height:32px;margin:-16px 0 0 -16px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:var(--text);font-family:inherit;font-size:15px;font-weight:800;display:grid;place-items:center;box-shadow:0 3px 0 rgba(0,0,0,.35),0 0 0 4px rgba(255,255,255,.25);cursor:pointer;height:32px}
+  .dot.on{background:var(--sun);box-shadow:0 3px 0 var(--sunDark),0 0 0 5px rgba(244,197,66,.35)}
+  .card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:18px}
+  .card h3{font-size:20px;line-height:1.2;font-weight:800;margin-bottom:8px}
+  .card p{font-size:15px;line-height:1.5;color:rgba(255,255,255,.8)}
+  .card .src{margin-top:10px;font-size:12px;color:rgba(255,255,255,.5)}
+  .card .src a{color:rgba(255,255,255,.6)}
+  .hint{margin-top:12px;font-size:13px;color:rgba(255,255,255,.5)}
+
+  footer{border-top:1px solid rgba(255,255,255,.1)}
+  footer .wrap{display:flex;justify-content:space-between;gap:12px;padding-top:22px;padding-bottom:30px;font-size:13px;color:rgba(255,255,255,.55)}
+  footer a{text-decoration:none}
+
+  @media (min-width:900px){
+    nav{height:84px}
+    .hero{grid-template-columns:1.15fr .85fr;align-items:center;gap:60px;padding:40px 0 110px}
+    .art{order:2;width:360px}
+    .bubble{font-size:28px;bottom:-26px}
+    h1{font-size:54px;letter-spacing:-1.2px}
+    .sub{font-size:19px;max-width:520px}
+    .signup{max-width:460px;margin-top:32px}
+    .note{text-align:left}
+    .closer{padding-bottom:110px}
+    h2{font-size:36px;margin-bottom:28px;max-width:640px}
+    .closer-grid{grid-template-columns:1.1fr .9fr;gap:32px;align-items:center}
+    .card{padding:28px}
+    .card h3{font-size:26px}
+    .card p{font-size:17px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav><a class="brand" href="./"><img src="img/courbet.jpg" alt="">Oh My Art!</a></nav>
+
+  <section class="hero">
+    <div class="art">
+      <img src="img/courbet.jpg" alt="Gustave Courbet, The Desperate Man, about 1843 to 1845: the painter stares out, eyes wide, hands in his hair.">
+      <span class="bubble">Oh my art!</span>
+    </div>
+    <div>
+      <h1>Learn art through famous paintings and their <span class="hl">infamous secrets</span>.</h1>
+      <p class="sub">Art history for total beginners: 540 paintings, from cave art to Pop Art.</p>
+      <div class="signup">
+        <form class="join" data-source="hero" novalidate>
+          <input type="email" name="email" placeholder="Your email" autocomplete="email" required aria-label="Your email">
+          <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button type="submit">Join the waitlist</button>
+        </form>
+        <p class="done" role="status">You're on the list. We'll email you when the app is out.</p>
+        <p class="err" role="alert" hidden>That didn't go through. Try again in a moment.</p>
+        <p class="note">We'll email you once, when the app is out. <a href="privacy.html#waitlist">Privacy</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="closer">
+    <div class="kicker">Look closer</div>
+    <h2>You've seen this painting. Did you see the skull?</h2>
+    <div class="closer-grid">
+      <div class="painting">
+        <img src="img/the-ambassadors.jpg" alt="Hans Holbein the Younger, The Ambassadors, 1533: 2 men stand beside shelves of objects, a long pale shape lies on the floor between them." width="1100" height="1084">
+        <button class="dot on" data-i="0" style="left:53%;top:86%" aria-label="Secret 1">1</button>
+        <button class="dot" data-i="1" style="left:6%;top:7%" aria-label="Secret 2">2</button>
+        <button class="dot" data-i="2" style="left:67%;top:59%" aria-label="Secret 3">3</button>
+        <button class="dot" data-i="3" style="left:44%;top:24%" aria-label="Secret 4">4</button>
+      </div>
+      <div>
+        <div class="card" aria-live="polite">
+          <h3 id="s-title"></h3>
+          <p id="s-body"></p>
+          <p class="src">The Ambassadors · Hans Holbein the Younger · 1533 · Source: <a href="https://www.nationalgallery.org.uk/paintings/hans-holbein-the-younger-the-ambassadors" target="_blank" rel="noopener">The National Gallery</a></p>
+        </div>
+        <p class="hint">Tap the numbers on the painting to find its 4 secrets.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap"><span>© 2026 Oh My Art!</span><span><a href="privacy.html">Privacy</a> · <a href="mailto:hello@ohmyart.app">hello@ohmyart.app</a></span></div>
+</footer>
+
+<script>
+  // The 4 secrets of The Ambassadors, word for word from the app (app/content/renaissance.json, source: The National Gallery).
+  const SECRETS = [
+    ['A skull <span class="hl">hides in plain sight</span>.', 'The long, pale shape between the 2 men becomes a skull when seen from a particular angle. The National Gallery says it can only be seen properly if you look up at the painting from near the bottom right corner.'],
+    ['A crucifix <span class="hl">peeks out of the curtain</span>.', 'At the very top left, partly hidden behind the green curtain that fills the background, is a small crucifix, a cross bearing the figure of Christ crucified. The National Gallery reads it as a hint of hope of redemption, set against the skull\'s reminder of death.'],
+    ['One lute string <span class="hl">is broken</span>.', 'The lower shelf is dominated by a lute, a stringed instrument, and one of its strings has snapped. Nearby, a flute is missing from its case and an arithmetic book lies open.'],
+    ['The top shelf <span class="hl">reads the sky</span>.', 'The upper shelf holds a celestial globe, a globe that maps the position of stars and planets. Around it sit instruments used to measure time and altitude.'],
+  ];
+  const dots = document.querySelectorAll('.dot');
+  const show = i => {
+    document.getElementById('s-title').innerHTML = SECRETS[i][0];
+    document.getElementById('s-body').textContent = SECRETS[i][1];
+    dots.forEach(d => d.classList.toggle('on', +d.dataset.i === i));
+  };
+  dots.forEach(d => d.addEventListener('click', () => show(+d.dataset.i)));
+  show(0);
+
+  // The waitlist writes to its own table in the Supabase project Loop (site/supabase/01-waitlist.sql).
+  // The publishable key is public by design: the table only accepts new rows and cannot be read.
+  const SUPABASE_URL = 'https://ttqoliuvnjctbbrjusdx.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_I9esUKGVDgQ6oioAAyA_hg_u84i3osZ';
+  const ref = new URLSearchParams(location.search).get('ref');
+  document.querySelectorAll('form.join').forEach(form => form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const box = form.closest('.signup'), err = box.querySelector('.err'), button = form.querySelector('button');
+    err.hidden = true;
+    // A field nobody sees. Filled in, it is a robot: act as if it went through, send nothing.
+    if (form.website.value) { box.classList.add('joined'); return; }
+    const email = form.email.value.trim();
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { err.textContent = 'That email address doesn\'t look right.'; err.hidden = false; return; }
+    button.disabled = true; button.textContent = 'Sending…';
+    try {
+      const res = await fetch(SUPABASE_URL + '/rest/v1/ohmyart_waitlist', {
+        method: 'POST',
+        headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+        body: JSON.stringify({ email, source: (form.dataset.source + (ref ? ':' + ref : '')).slice(0, 60) })
+      });
+      // 409: already on the list. For the person it is the same good news.
+      if (!res.ok && res.status !== 409) throw new Error(res.status);
+      box.classList.add('joined');
+    } catch (_) {
+      err.textContent = 'That didn\'t go through. Try again in a moment.';
+      err.hidden = false;
+    } finally {
+      button.disabled = false; button.textContent = 'Join the waitlist';
+    }
+  }));
+</script>
+</body>
+</html>
