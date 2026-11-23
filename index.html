@@ -27,7 +27,11 @@
   .top{padding:22px 20px}
   .brand{display:flex;align-items:center;gap:12px;flex-wrap:wrap;row-gap:8px;text-decoration:none}
   .brand img{width:48px;height:48px;border-radius:12px;transform:rotate(-4deg);box-shadow:0 3px 0 rgba(0,0,0,.18),0 8px 18px rgba(0,0,0,.18)}
-  .brand b{font-size:30px;font-weight:800;letter-spacing:-.6px;white-space:nowrap}
+  /* The logo: « Oh my » in a serif italic, then ART! big and bold. */
+  .logo{display:flex;flex-direction:column;line-height:.8;font-weight:800;font-variation-settings:'opsz' 96}
+  .logo small{font-family:'DM Serif Display',serif;font-style:italic;font-weight:400;font-variation-settings:normal;font-size:24px;margin:0 0 2px 2px}
+  .logo span{font-size:58px;letter-spacing:-1.3px}
+  .logo i{font-style:normal;color:#e0a800}
   .pill{font-size:12px;font-weight:800;letter-spacing:1.3px;text-transform:uppercase;background:var(--sun);padding:6px 11px;border-radius:99px;white-space:nowrap}
 
   /* The painting on a museum wall: The Arnolfini Portrait in a gold frame, a magnifier on the mirror (detail x .503, y .304 in the app). */
@@ -78,6 +82,8 @@
     .frame{margin:0}
     .cartel{margin:18px 0 0 auto}
     .txt{grid-column:1;padding:50px 0 0}
+    .logo small{font-size:28px}
+    .logo span{font-size:68px;letter-spacing:-1.5px}
     h1{font-size:50px;letter-spacing:-1.1px}
     .sub{font-size:18px}
     .signup{max-width:440px}
@@ -89,7 +95,7 @@
 </head>
 <body>
 <div class="wrap">
-  <div class="top"><a class="brand" href="./"><img src="img/apple-touch-icon.png" alt=""><b>Oh My Art!</b><span class="pill">App coming soon</span></a></div>
+  <div class="top"><a class="brand" href="./"><img src="img/apple-touch-icon.png" alt=""><b class="logo" aria-label="Oh My Art!"><small>Oh my</small><span>ART<i>!</i></span></b><span class="pill">App coming soon</span></a></div>
 
   <div class="art">
     <div class="frame">
